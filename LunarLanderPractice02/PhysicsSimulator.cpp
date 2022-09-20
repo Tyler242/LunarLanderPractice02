@@ -90,7 +90,6 @@ double computeVelocity(double v, double a, double t) {
  *     y : the vertical component of the total
  ***********************************************/
 double computeVerticalComponent(double a, double total) {
-    // y = cos(a) * total
     return cos(a) * total;
 }
     
@@ -137,7 +136,7 @@ double computeHorizontalComponent(double a, double total) {
  *    total : total component
  ***********************************************/
 double computeTotalComponent(double x, double y) {
-    double total = (x * x) * (y * y);
+    double total = sqrt((x * x) + (y * y));
 
     return total;
 }
@@ -195,22 +194,30 @@ int main()
         double ddy;                 // Total vertical acceleration
         double v;                   // Total velocity
 
-    for (int i = 0; i < 5; i++) {
-        double mass = WEIGHT / GRAVITY;
-        accelerationThrust = computeAcceleration(THRUST - WEIGHT, mass);
+    for (int i = 0; i < 5; i++) {;
+        // compute acceleration
+        accelerationThrust = computeAcceleration(THRUST, WEIGHT);
 
+        // compute acceleration components
         aRadians = radiansFromDegrees(aDegrees);
         ddxThrust = computeHorizontalComponent(aRadians, accelerationThrust);
-
-         
         ddyThrust = computeVerticalComponent(aRadians, accelerationThrust);
-        ddy = ddyThrust + (GRAVITY * mass / (y * y));
 
+        // Add acceleration from gravity to get the 
+        // total vertical acceleration.
+        ddy = ddyThrust + GRAVITY;
+
+        // compute velocity components
+        // We use ddxThrust here because gravity does not have an effect on 
+        // horizontal acceleration so ddxThrust and ddx would be the same.
         dx = computeVelocity(dx, ddxThrust, t);
         dy = computeVelocity(dy, ddy, t);
 
+        // compute total velocity (both components together)
         v = computeTotalComponent(dx, dy);
 
+        // Compute the new coordinates based on the current coordinate,
+        // velocity, acceleration, and time interval.
         x = computeDistance(x, dx, ddxThrust, t);
         y = computeDistance(y, dy, ddy, t);
 
