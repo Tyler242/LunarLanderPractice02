@@ -6,13 +6,19 @@
  * 3. Assignment Description:
  *      Compute how the Apollo lander will move across the screen
  * 4. What was the hardest part? Be as specific as possible.
- *      -a paragraph or two about how the assignment went for you-
+ *      The hardest part for us was understanding how the
+ *      physics was supposed to work. Implementing the
+ *      functions and getting the program to run was easy enough,
+ *      but it took a long time to figure out how to put it all
+ *      together to match the test case. Some basic physic
+ *      descriptions would have been very beneficial, but we got
+ *      it figured out.
  * 5. How long did it take for you to complete the assignment?
- *      -total time in hours: reading the assignment, submitting, etc.
+ *      3 hrs each
  **************************************************************/
 
 #include <iostream>  // for CIN and COUT
-#include <cmath>
+#include <cmath>     // for sin and cos
 using namespace std;
 
 #define WEIGHT   15103.000   // Weight in KG
@@ -179,20 +185,20 @@ double prompt(string message) {
  ****************************************************************/
 int main()
 {
-        // Prompt for input and variables to be computed
-        double dx = prompt("What is your horizontal velocity (m/s)? ");
-        double dy = prompt("What is your vertical velocity (m/s)? ");
-        double y = prompt("What is your altitude (m)? ");
-        double x = prompt("What is your position (m)? ");
-        double aDegrees = prompt("What is the angle of the LM where 0 is up (degrees)? ");
-        double t = prompt("What is the time interval (s)? ");
-        double aRadians;            // Angle in radians
-        double accelerationThrust;  // Acceleration due to thrust 
-        double ddxThrust;           // Horizontal acceleration due to thrust
-        double ddyThrust;           // Vertical acceleration due to thrust
-        double ddx;                 // Total horizontal acceleration
-        double ddy;                 // Total vertical acceleration
-        double v;                   // Total velocity
+    // Prompt for input and variables to be computed
+    double dx = prompt("What is your horizontal velocity (m/s)? ");
+    double dy = prompt("What is your vertical velocity (m/s)? ");
+    double y = prompt("What is your altitude (m)? ");
+    double x = prompt("What is your position (m)? ");
+    double aDegrees = prompt("What is the angle of the LM where 0 is up (degrees)? ");
+    double t = prompt("What is the time interval (s)? ");
+    double aRadians;            // Angle in radians
+    double accelerationThrust;  // Acceleration due to thrust 
+    double ddxThrust;           // Horizontal acceleration due to thrust
+    double ddyThrust;           // Vertical acceleration due to thrust
+    double ddx;                 // Total horizontal acceleration
+    double ddy;                 // Total vertical acceleration
+    double v;                   // Total velocity
 
     for (int i = 0; i < 5; i++) {;
         // compute acceleration
@@ -228,7 +234,6 @@ int main()
         cout << "\tNew velocity:   (" << dx << ", " << dy << ")m/s\n";
         cout << "\tTotal velocity:  " << v << "m/s\n\n";
     }
-
 
     return 0;
 }
